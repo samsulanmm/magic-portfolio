@@ -39,8 +39,8 @@ export default async function RootLayout({
   } as React.CSSProperties;
 
   return (
-    <html lang="en" className={fontClass} style={styleVariables}>
-      <body className="text-foreground antialiased selection:bg-primary/30 min-h-screen bg-background">
+    <html lang="en" className={fontClass} style={styleVariables} suppressHydrationWarning>
+      <body className="text-foreground antialiased selection:bg-primary/30 min-h-screen bg-background" suppressHydrationWarning>
         {children}
       </body>
     </html>
