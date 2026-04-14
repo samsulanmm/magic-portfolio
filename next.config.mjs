@@ -13,6 +13,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "www.google.com",
         pathname: "**",
       },
