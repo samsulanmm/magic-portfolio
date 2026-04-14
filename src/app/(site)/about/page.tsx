@@ -37,6 +37,8 @@ export default async function About() {
             src={avatarImage} 
             alt={name} 
             fill 
+            priority
+            sizes="(max-width: 768px) 256px, 256px"
             className="object-cover"
           />
         </div>

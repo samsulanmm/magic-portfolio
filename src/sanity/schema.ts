@@ -92,4 +92,6 @@ export const gallery = {
   ]
 };
 
-export const schema = [profile, post, project, gallery, experience];
+import { themeSettings } from './theme';
+
+export const schema = [profile, post, project, gallery, experience, themeSettings];

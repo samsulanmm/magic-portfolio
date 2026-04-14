@@ -37,7 +37,7 @@ export default async function Work() {
               <div className="relative w-full aspect-video rounded-3xl overflow-hidden glass border-white/10 group-hover:-translate-y-2 group-hover:scale-[1.02] transition-all duration-500 shadow-2xl bg-white/5 border border-white/5">
                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                  {project.imageUrl ? (
-                   <Image src={project.imageUrl} alt={project.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                   <Image src={project.imageUrl} alt={project.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                  ) : (
                    <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-mono text-sm">
                       No Preview Image

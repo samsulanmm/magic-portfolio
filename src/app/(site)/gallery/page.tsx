@@ -31,7 +31,7 @@ export default async function Gallery() {
             <div key={img._id} className="break-inside-avoid relative group rounded-2xl overflow-hidden glass border-white/10 shadow-lg group-hover:shadow-2xl transition-all duration-500">
                {img.imageUrl ? (
                  <div className="relative w-full aspect-[3/4]">
-                   <Image src={img.imageUrl} alt={img.title || `Capture`} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                   <Image src={img.imageUrl} alt={img.title || `Capture`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                  </div>
                ) : (
                  <div className={`w-full bg-white/5 ${i % 2 === 0 ? 'h-64' : 'h-96'}`}></div>

@@ -42,6 +42,8 @@ export default async function Home() {
           src={avatarImage} 
           alt={name} 
           fill 
+          priority
+          sizes="(max-width: 768px) 128px, 128px"
           className="object-cover" 
         />
       </div>
@@ -92,7 +94,7 @@ export default async function Home() {
                 <div className="w-full h-48 bg-white/5 rounded-2xl mb-6 overflow-hidden relative border border-white/5">
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"/>
                   {project.imageUrl ? (
-                    <Image src={project.imageUrl} alt={project.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <Image src={project.imageUrl} alt={project.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-mono text-sm">No Preview</div>
                   )}

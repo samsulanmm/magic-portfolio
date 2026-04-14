@@ -30,7 +30,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-primary)", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

@@ -5,7 +5,7 @@ import { schema } from './src/sanity/schema'
 // Set of actions allowed for singletons
 const singletonActions = new Set(["publish", "discardChanges", "restore"])
 // Types that should be treated as singletons
-const singletonTypes = new Set(["profile"])
+const singletonTypes = new Set(["profile", "themeSettings"])
 
 export default defineConfig({
   basePath: '/studio',
@@ -26,6 +26,15 @@ export default defineConfig({
                 S.document()
                   .schemaType("profile")
                   .documentId("global-profile")
+              ),
+            // Singleton theme settings
+            S.listItem()
+              .title("Theme Settings")
+              .id("global-theme")
+              .child(
+                S.document()
+                  .schemaType("themeSettings")
+                  .documentId("global-theme")
               ),
             S.divider(),
             // Regular document types
