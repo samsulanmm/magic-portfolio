@@ -20,6 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
       default: name,
     },
     description: "A premium software engineering portfolio.",
+    icons: {
+      icon: [
+        {
+          url: "/images/avatar.jpg",
+          href: "/images/avatar.jpg",
+        },
+      ],
+    },
   };
 }
 
