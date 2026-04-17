@@ -26,7 +26,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const profile = await client.fetch(profileQuery);
   const name = profile?.name || "Portfolio";
   return {
-    title: name,
+    title: {
+      absolute: name,
+    },
     description: profile?.bio || "Professional Portfolio",
   };
 }

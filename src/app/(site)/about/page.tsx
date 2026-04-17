@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const profile = await client.fetch(query);
   const name = profile?.name || "Portfolio";
   return {
-    title: `About | ${name}`,
+    title: "About",
     description: `Learn more about ${name} and their professional journey.`,
   };
 }

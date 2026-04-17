@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const profile = await client.fetch(profileQuery);
   const name = profile?.name || "Portfolio";
   return {
-    title: `Photo gallery - ${name}`,
+    title: "Gallery",
     description: `A photo collection by ${name}`,
   };
 }
@@ -54,8 +54,9 @@ export default async function Gallery() {
             </div>
           ))
         ) : (
-          <div className="col-span-full py-12 text-center text-gray-500 w-full inline-block">
-            <p>No gallery images found. Upload photos via /studio!</p>
+          <div className="col-span-full py-24 text-center text-gray-500 w-full flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-[3rem]">
+            <p className="text-xl font-medium">No gallery images found.</p>
+            <p className="text-sm opacity-60 mt-2">Upload photos via /studio!</p>
           </div>
         )}
       </div>
