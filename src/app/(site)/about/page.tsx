@@ -62,7 +62,7 @@ export default async function About() {
               className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl glass hover:bg-white/10 text-white font-medium transition-colors"
             >
               <FilePdf size={20} className="text-red-400" />
-              Download Resume
+              Download CV
             </a>
           )}
           
