@@ -11,18 +11,28 @@ const galleryQuery = `*[_type == "gallery"] | order(date desc) {
   "imageUrl": image.asset->url
 }`;
 
-export const metadata: Metadata = {
-  title: gallery.title,
-  description: gallery.description,
-};
+const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{ name }`;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await client.fetch(profileQuery);
+  const name = profile?.name || "Portfolio";
+  return {
+    title: `Photo gallery - ${name}`,
+    description: `A photo collection by ${name}`,
+  };
+}
 
 export default async function Gallery() {
-  const images = await client.fetch(galleryQuery);
+  const [images, profile] = await Promise.all([
+    client.fetch(galleryQuery),
+    client.fetch(profileQuery)
+  ]);
+  const name = profile?.name || "Portfolio";
 
   return (
     <div className="w-full max-w-6xl animate-fade-in flex flex-col gap-12">
       <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6 text-center">
-        {gallery.title}
+        Photo gallery - {name}
       </h1>
       
       <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
