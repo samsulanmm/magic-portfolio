@@ -14,18 +14,28 @@ const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
   "excerpt": pt::text(body)[0...150] + "..."
 }`;
 
-export const metadata: Metadata = {
-  title: blog.title,
-  description: blog.description,
-};
+const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{ name }`;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await client.fetch(profileQuery);
+  const name = profile?.name || "Portfolio";
+  return {
+    title: `Blog | ${name}`,
+    description: `Articles and insights written by ${name}`,
+  };
+}
 
 export default async function Blog() {
-  const posts = await client.fetch(postsQuery);
+  const [posts, profile] = await Promise.all([
+    client.fetch(postsQuery),
+    client.fetch(profileQuery)
+  ]);
+  const name = profile?.name || "the developer";
 
   return (
     <div className="w-full max-w-4xl animate-fade-in flex flex-col gap-12">
-      <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6">
-        {blog.title}
+      <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6 uppercase">
+        Articles by {name}
       </h1>
       
       <div className="flex flex-col gap-8">

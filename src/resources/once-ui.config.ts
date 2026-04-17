@@ -14,7 +14,7 @@ import {
 import { home } from "./index";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL: string = "https://samsulanam.vercel.app";
+const baseURL: string = process.env.NEXT_PUBLIC_BASE_URL || "https://portfolio.vercel.app";
 
 const routes: RoutesConfig = {
   "/": true,
@@ -188,7 +188,7 @@ const mailchimp: MailchimpConfig = {
 const schema: SchemaConfig = {
   logo: "",
   type: "Organization",
-  name: "Once UI",
+  name: "Portfolio",
   description: home.description,
   email: "lorant@once-ui.com",
 };

@@ -16,18 +16,28 @@ const projectsQuery = `*[_type == "project"] | order(_createdAt desc) {
   "imageUrl": image.asset->url
 }`;
 
-export const metadata: Metadata = {
-  title: work.title,
-  description: work.description,
-};
+const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{ name }`;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await client.fetch(profileQuery);
+  const name = profile?.name || "Portfolio";
+  return {
+    title: `Work | ${name}`,
+    description: `A collection of projects and case studies by ${name}`,
+  };
+}
 
 export default async function Work() {
-  const projects = await client.fetch(projectsQuery);
+  const [projects, profile] = await Promise.all([
+    client.fetch(projectsQuery),
+    client.fetch(profileQuery)
+  ]);
+  const name = profile?.name || "the developer";
 
   return (
     <div className="w-full max-w-5xl animate-fade-in flex flex-col gap-12">
-      <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6">
-        {work.title}
+      <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6 uppercase">
+        Projects by {name}
       </h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

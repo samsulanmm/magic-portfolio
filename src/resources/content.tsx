@@ -2,14 +2,14 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
+  firstName: "Your",
+  lastName: "Name",
+  name: `Your Name`,
+  role: "Creative Developer",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "hello@example.com",
+  location: "UTC", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
@@ -62,21 +62,21 @@ const home: Home = {
   description: `Portfolio website showcasing my work as a ${person.role}`,
   headline: <>Building bridges between design and code</>,
   featured: {
-    display: true,
+    display: false,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">Featured</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
+    I'm a developer and designer focused on building high-quality digital products.
 </>
   ),
 };
@@ -102,8 +102,8 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
+        A results-driven professional with a passion for transforming complex challenges
+        into simple, elegant solutions. Focused on digital interfaces, interactive
         experiences, and the convergence of design and technology.
       </>
     ),
@@ -113,41 +113,15 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
+        company: "Company Name",
         timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        role: "Senior Developer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Developed and maintained high-performance web applications using modern technologies.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
-        ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Collaborated with cross-functional teams to deliver scalable solutions.
           </>,
         ],
         images: [],
@@ -159,12 +133,8 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "University Name",
+        description: <>Degree in Computer Science or similar.</>,
       },
     ],
   },
@@ -175,7 +145,7 @@ const about: About = {
       {
         title: "Figma",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>Able to prototype in Figma with design systems with unnatural speed.</>
         ),
         tags: [
           {
@@ -202,7 +172,7 @@ const about: About = {
       {
         title: "Next.js",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>Building next gen apps with Next.js + Design Systems + modern backends.</>
         ),
         tags: [
           {

@@ -1,14 +1,19 @@
-"use client";
-
-import { EnvelopeSimple, GithubLogo, LinkedinLogo, TwitterLogo } from "@phosphor-icons/react";
+import { client } from "@/sanity/lib/client";
+import { person } from "@/resources";
 import Link from "next/link";
+import { EnvelopeSimple, GithubLogo, LinkedinLogo, TwitterLogo } from "@phosphor-icons/react/dist/ssr";
 
-export function Footer() {
+const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{ name }`;
+
+export async function Footer() {
+  const profile = await client.fetch(profileQuery);
+  const name = profile?.name || person.name || "Portfolio";
+
   return (
     <footer className="w-full max-w-4xl mx-auto py-12 px-6 mt-20 border-t border-white/10">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-sm text-gray-400">
-          © {new Date().getFullYear()} Samsul Anam. All rights reserved.
+          © {new Date().getFullYear()} {name}. All rights reserved.
         </div>
         
         <div className="flex items-center gap-4">

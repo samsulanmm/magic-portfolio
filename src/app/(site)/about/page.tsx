@@ -15,18 +15,23 @@ const query = `*[_type == "profile"] | order(_updatedAt desc)[0]{
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: "About | Samsul Anam - Portfolio",
-  description: "About the creator details",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await client.fetch(query);
+  const name = profile?.name || "Portfolio";
+  return {
+    title: `About | ${name}`,
+    description: `Learn more about ${name} and their professional journey.`,
+  };
+}
 
 export default async function About() {
   const profile = await client.fetch(query);
 
-  const name = profile?.name || "Your Name";
-  const role = profile?.role || "Your Role";
+  const name = profile?.name || "Next Gen Developer";
+  const role = profile?.role || "Design & Engineering";
   const avatarImage = profile?.avatarUrl || "/images/avatar.jpg";
   const resumeUrl = profile?.resumeUrl || "#";
+  const location = profile?.location || "Based globally (Remote)";
 
   return (
     <div className="flex flex-col md:flex-row gap-12 w-full max-w-5xl animate-fade-in relative">
@@ -58,7 +63,7 @@ export default async function About() {
           
           <div className="w-full p-4 rounded-2xl bg-white/5 border border-white/5 text-gray-400 flex items-center gap-3">
              <Globe weight="duotone" className="text-secondary-400" size={20}/>
-             <span>Based globally (Remote)</span>
+             <span>{location}</span>
           </div>
         </div>
       </aside>

@@ -9,10 +9,19 @@ const roboto = Roboto_Mono({ subsets: ["latin"], display: 'swap', variable: "--f
 const playfair = Playfair_Display({ subsets: ["latin"], display: 'swap', variable: "--font-primary" });
 const outfit = Outfit({ subsets: ["latin"], display: 'swap', variable: "--font-primary" });
 
-export const metadata: Metadata = {
-  title: "Samsul Anam - Portfolio",
-  description: "A software engineer portfolio website.",
-};
+const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{ name }`;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await client.fetch(profileQuery);
+  const name = profile?.name || "Portfolio";
+  return {
+    title: {
+      template: `%s | ${name}`,
+      default: name,
+    },
+    description: "A premium software engineering portfolio.",
+  };
+}
 
 export const revalidate = 3600; // Cache for 1 hour, use On-Demand Revalidation (Webhook) for instant updates
 

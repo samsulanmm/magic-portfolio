@@ -1,14 +1,16 @@
+import { Metadata } from "next";
 import { ArrowRight, EnvelopeSimple } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 
-// Define the GROQ queries
-const query = `*[_type == "profile"] | order(_updatedAt desc)[0]{
-  name,
-  role,
-  bio,
-  "avatarUrl": avatar.asset->url
+export const revalidate = 3600;
+
+const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{ 
+  name, 
+  role, 
+  bio, 
+  "avatarUrl": avatar.asset->url 
 }`;
 
 const projectsQuery = `*[_type == "project"][0...4] | order(_createdAt desc) {
@@ -20,19 +22,24 @@ const projectsQuery = `*[_type == "project"][0...4] | order(_createdAt desc) {
   "imageUrl": image.asset->url
 }`;
 
-export const revalidate = 3600;
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await client.fetch(profileQuery);
+  const name = profile?.name || "Portfolio";
+  return {
+    title: name,
+    description: profile?.bio || "Professional Portfolio",
+  };
+}
 
 export default async function Home() {
-  // Fetch data natively on the server side
   const [profile, projects] = await Promise.all([
-    client.fetch(query),
+    client.fetch(profileQuery),
     client.fetch(projectsQuery)
   ]);
 
-  // Fallbacks in case user hasn't hit publish perfectly
-  const name = profile?.name || "Your Name";
-  const role = profile?.role || "Your Tagline / Profession";
-  const bio = profile?.bio || "A brief introduction about your skills and workflow.";
+  const name = profile?.name || "Next Gen Developer";
+  const role = profile?.role || "Design & Engineering";
+  const bio = profile?.bio || "Crafting digital experiences with a focus on simplicity and impact.";
   const avatarImage = profile?.avatarUrl || "/images/avatar.jpg";
 
   return (
@@ -54,8 +61,7 @@ export default async function Home() {
           Available for new opportunities
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-2">
-          Hi, I'm <br className="md:hidden" />
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-2 leading-tight">
           <span className="text-gradient leading-tight">{name}</span>
         </h1>
         <h2 className="text-2xl font-medium text-white/80">
