@@ -31,8 +31,8 @@ export default async function Gallery() {
 
   return (
     <div className="w-full max-w-6xl animate-fade-in flex flex-col gap-12">
-      <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6 text-center">
-        Photo gallery - {name}
+      <h1 className="text-5xl font-bold text-white tracking-tight border-b border-white/10 pb-6 uppercase">
+        Photo gallery by {name}
       </h1>
       
       <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">

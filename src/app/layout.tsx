@@ -49,7 +49,7 @@ export default async function RootLayout({
 
   // Set CSS Variables natively (Tailwind will use these)
   const styleVariables = {
-    '--background': theme?.backgroundColor || '#0f172a',
+    '--background': theme?.backgroundColor || '#020617',
     '--foreground': theme?.foregroundColor || '#f8fafc',
     '--primary': theme?.primaryColor || '#8b5cf6',
     '--secondary': theme?.secondaryColor || '#3b82f6',

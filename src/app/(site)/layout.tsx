@@ -9,7 +9,7 @@ export default function SiteLayout({
   return (
     <div className="bg-gradient-animate min-h-screen relative flex flex-col w-full">
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 50%)' }} />
+           style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary), transparent 80%) 0%, transparent 50%)' }} />
       
       <Header />
       
