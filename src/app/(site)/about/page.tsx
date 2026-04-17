@@ -3,13 +3,18 @@ import Image from "next/image";
 import { CalendarBlank, Globe, Briefcase, GraduationCap, CodeBlock, FilePdf } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 const query = `*[_type == "profile"] | order(_updatedAt desc)[0]{
   name,
   role,
   about,
+  location,
   resumeUrl,
   "avatarUrl": avatar.asset->url,
+  skills,
+  technicalSkills,
+  softSkills,
+  education,
   experiences
 }`;
 
@@ -34,7 +39,7 @@ export default async function About() {
   const location = profile?.location || "Based globally (Remote)";
 
   return (
-    <div className="flex flex-col md:flex-row gap-12 w-full max-w-5xl animate-fade-in relative">
+    <div className="flex flex-col md:flex-row gap-12 w-full max-w-5xl animate-fade-in relative pb-20">
       {/* Sidebar / Avatar Area */}
       <aside className="w-full md:w-1/3 flex flex-col items-center md:items-start md:sticky top-40 h-fit gap-6 z-10">
         <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-[2rem] overflow-hidden glass border-white/10 shadow-xl">
@@ -66,6 +71,38 @@ export default async function About() {
              <span>{location}</span>
           </div>
         </div>
+
+        {/* Technical Skills List in Sidebar */}
+        {profile?.technicalSkills && profile.technicalSkills.length > 0 && (
+          <div className="w-full flex flex-col gap-4 mt-4">
+             <h3 className="text-sm font-bold uppercase tracking-widest text-white/50 px-2 flex items-center gap-2">
+               <CodeBlock size={16} /> Technical Stack
+             </h3>
+             <div className="flex flex-wrap gap-2">
+                {profile.technicalSkills.map((skill: string, i: number) => (
+                  <span key={i} className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-xs font-mono text-primary-300">
+                    {skill}
+                  </span>
+                ))}
+             </div>
+          </div>
+        )}
+
+        {/* Soft Skills List in Sidebar */}
+        {profile?.softSkills && profile.softSkills.length > 0 && (
+          <div className="w-full flex flex-col gap-4 mt-4 pt-4 border-t border-white/5">
+             <h3 className="text-sm font-bold uppercase tracking-widest text-white/50 px-2 flex items-center gap-2">
+               <Briefcase size={16} /> Non-Technical
+             </h3>
+             <div className="flex flex-wrap gap-2">
+                {profile.softSkills.map((skill: string, i: number) => (
+                  <span key={i} className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-xs font-mono text-gray-400">
+                    {skill}
+                  </span>
+                ))}
+             </div>
+          </div>
+        )}
       </aside>
 
       {/* Main Content Area */}
@@ -84,6 +121,27 @@ export default async function About() {
             )}
           </div>
         </section>
+
+        {/* Education Section */}
+        {profile?.education && profile.education.length > 0 && (
+          <section className="flex flex-col gap-8">
+            <h3 className="text-3xl font-bold flex items-center gap-3 border-b border-white/10 pb-4 text-white">
+              <GraduationCap className="text-secondary-400" weight="duotone" />
+              Education
+            </h3>
+            <div className="grid grid-cols-1 gap-6">
+               {profile.education.map((edu: any, i: number) => (
+                 <div key={i} className="glass border-white/5 p-6 rounded-3xl relative overflow-hidden group">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                       <h4 className="text-xl font-bold text-white">{edu.institution}</h4>
+                       <span className="text-sm font-mono text-gray-400">{edu.year}</span>
+                    </div>
+                    <p className="text-primary-300">{edu.degree}</p>
+                 </div>
+               ))}
+            </div>
+          </section>
+        )}
 
         {/* Work Experience */}
         {profile?.experiences && profile.experiences.length > 0 && (

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ArrowRight, EnvelopeSimple } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, EnvelopeSimple, WhatsappLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
@@ -10,6 +10,7 @@ const profileQuery = `*[_type == "profile"] | order(_updatedAt desc)[0]{
   name, 
   role, 
   bio, 
+  contactUrl,
   "avatarUrl": avatar.asset->url 
 }`;
 
@@ -83,11 +84,11 @@ export default async function Home() {
           <ArrowRight weight="bold" />
         </Link>
         <a 
-          href="mailto:contact@example.com" 
+          href={profile?.contactUrl || "mailto:contact@example.com"} 
           className="w-full sm:w-auto px-8 py-4 rounded-full glass text-white font-medium flex items-center justify-center gap-2 hover:bg-white/10 transition-all sm:hover:scale-105"
         >
           Contact Me
-          <EnvelopeSimple weight="bold" />
+          <WhatsappLogoIcon weight="bold" />
         </a>
       </div>
       
