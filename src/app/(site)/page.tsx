@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ArrowRight, EnvelopeSimple, WhatsappLogoIcon } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, EnvelopeSimple, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
@@ -88,7 +88,7 @@ export default async function Home() {
           className="w-full sm:w-auto px-8 py-4 rounded-full glass text-white font-medium flex items-center justify-center gap-2 hover:bg-white/10 transition-all sm:hover:scale-105"
         >
           Contact Me
-          <WhatsappLogoIcon weight="bold" />
+          <WhatsappLogo weight="bold" />
         </a>
       </div>
       
