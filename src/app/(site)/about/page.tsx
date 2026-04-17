@@ -4,7 +4,7 @@ import { CalendarBlank, Globe, Briefcase, GraduationCap, CodeBlock, FilePdf } fr
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { PortableText } from "next-sanity";
-const query = `*[_type == "profile"][0]{
+const query = `*[_type == "profile"] | order(_updatedAt desc)[0]{
   name,
   role,
   about,

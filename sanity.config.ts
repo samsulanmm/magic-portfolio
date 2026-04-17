@@ -9,7 +9,7 @@ const singletonTypes = new Set(["profile", "themeSettings"])
 
 export default defineConfig({
   basePath: '/studio',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '1xdwzv98', // Mock placeholder
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'gwffi5sr', // Your real project ID
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   title: 'Magic Portfolio CMS',
   plugins: [

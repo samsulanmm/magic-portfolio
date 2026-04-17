@@ -22,7 +22,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // Fetch Theme settings from Sanity singleton
-  const themeQuery = `*[_type == "themeSettings"][0]`;
+  const themeQuery = `*[_type == "themeSettings"] | order(_updatedAt desc)[0]`;
   const theme = await client.fetch(themeQuery);
 
   let fontClass = inter.variable; // Default fallback

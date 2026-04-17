@@ -4,7 +4,7 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 
 // Define the GROQ queries
-const query = `*[_type == "profile"][0]{
+const query = `*[_type == "profile"] | order(_updatedAt desc)[0]{
   name,
   role,
   bio,

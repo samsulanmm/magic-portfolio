@@ -14,9 +14,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Revalidate the entire layout and all pages below it.
-    // For large sites, you should parse the Sanity hook body to revalidate specific paths:
-    // const body = await req.json();
     revalidatePath('/', 'layout');
+    
+    // Explicitly revalidate specific pathways to be absolutely sure Vercel Edge Cache purges them
+    revalidatePath('/');
+    revalidatePath('/about');
+    revalidatePath('/work');
+    revalidatePath('/gallery');
+    revalidatePath('/blog');
 
     return NextResponse.json({ revalidated: true, now: Date.now() });
   } catch (err: any) {
