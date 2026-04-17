@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { client } from "@/sanity/lib/client";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const projectsQuery = `*[_type == "project"] | order(_createdAt desc) {
   _id,

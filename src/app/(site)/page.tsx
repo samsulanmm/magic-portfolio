@@ -20,7 +20,7 @@ const projectsQuery = `*[_type == "project"][0...4] | order(_createdAt desc) {
   "imageUrl": image.asset->url
 }`;
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function Home() {
   // Fetch data natively on the server side

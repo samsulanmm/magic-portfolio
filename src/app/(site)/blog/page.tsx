@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CalendarBlank } from "@phosphor-icons/react/dist/ssr";
 import { client } from "@/sanity/lib/client";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
   _id,

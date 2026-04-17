@@ -3,7 +3,7 @@ import { gallery } from "@/resources";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const galleryQuery = `*[_type == "gallery"] | order(date desc) {
   _id,

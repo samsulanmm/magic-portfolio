@@ -13,10 +13,10 @@ const query = `*[_type == "profile"][0]{
   experiences
 }`;
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "About | Magic Portfolio",
+  title: "About | Samsul Anam - Portfolio",
   description: "About the creator details",
 };
 

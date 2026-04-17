@@ -10,11 +10,11 @@ const playfair = Playfair_Display({ subsets: ["latin"], display: 'swap', variabl
 const outfit = Outfit({ subsets: ["latin"], display: 'swap', variable: "--font-primary" });
 
 export const metadata: Metadata = {
-  title: "Samsul Anam - Magic Portfolio",
-  description: "A premium software engineering portfolio.",
+  title: "Samsul Anam - Portfolio",
+  description: "A software engineer portfolio website.",
 };
 
-export const revalidate = 60; // Allow layout to gracefully refresh dynamically
+export const revalidate = 3600; // Cache for 1 hour, use On-Demand Revalidation (Webhook) for instant updates
 
 export default async function RootLayout({
   children,
