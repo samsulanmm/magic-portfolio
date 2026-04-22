@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #0f172a;
+  --background: #020617;
   --foreground: #f8fafc;
-  --primary: #8b5cf6;
-  --secondary: #3b82f6;
+  --primary: #3b82f6;
+  --secondary: #60a5fa;
   --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-bg: rgba(2, 6, 23, 0.7);
 }
 
 @media (prefers-color-scheme: light) {
@@ -55,7 +55,7 @@ body {
 
 /* Background animated gradient */
 .bg-gradient-animate {
-  background: linear-gradient(-45deg, var(--background), #1e1b4b, #2e1065, var(--background));
+  background: linear-gradient(-45deg, #020617, #0f172a, #1e3a8a, #020617);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
